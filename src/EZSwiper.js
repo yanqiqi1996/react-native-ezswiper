@@ -284,11 +284,15 @@ export default class EZSwiper extends Component<{}> {
       if (this.ezswiper.loop) {
         if (Math.abs(offset - (this.ezswiper.count + 1) * this.ezswiper.side) < 20.1) {
           offset = this.ezswiper.side;
-          this.scrollView.scrollTo();
+          if (Platform.OS === 'android') {
+            this.scrollView.scrollTo();
+          }
           this.scrollView.scrollTo({ [this.ezswiper.scrollToDirection]: offset, animated: false });
         } else if (Math.abs(offset) < 20.1) {
           offset = this.ezswiper.side * this.ezswiper.count;
-          this.scrollView.scrollTo();
+          if (Platform.OS === 'android') {
+            this.scrollView.scrollTo();
+          }
           this.scrollView.scrollTo({ [this.ezswiper.scrollToDirection]: offset, animated: false });
         }
       }
